@@ -45,21 +45,22 @@ int CountChar(FILE *fp) {
 }
 
  
-int main() {
+int main(int argc, char* argv[]) {
 	FILE *fp = NULL;
-	//读取输入 
-	char str[10];
+	//选择
+	char *c = argv[1];
+	//文件路径 
+	char *txt = argv[2];
 	
-	fp = fopen("E:\\test.txt", "r");
+	fp = fopen(txt, "r");
 	if(fp == NULL) {
 		printf("该文件为空");
 		return 0; 
 	} else {
-		scanf("%s",str);
-		char c =  str[1];
-		if(c == 'w') {
+
+		if(!strcmp(c, "-w")) {
 			printf("单词数: %d",CountWord(fp));
-		} else if(c == 'c'){
+		} else if(!strcmp(c, "-c")){
 			printf("字符数: %d",CountChar(fp));
 		}
 	}
